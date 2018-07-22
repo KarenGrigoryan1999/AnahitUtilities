@@ -1,0 +1,11 @@
+c:\users\pc\documents\visual studio 2017\Projects\startup\startup\bin\Debug\startup.exe.config
+c:\users\pc\documents\visual studio 2017\Projects\startup\startup\bin\Debug\startup.exe
+c:\users\pc\documents\visual studio 2017\Projects\startup\startup\bin\Debug\startup.pdb
+c:\users\pc\documents\visual studio 2017\Projects\startup\startup\obj\Debug\startup.csprojResolveAssemblyReference.cache
+c:\users\pc\documents\visual studio 2017\Projects\startup\startup\obj\Debug\startup.Form1.resources
+c:\users\pc\documents\visual studio 2017\Projects\startup\startup\obj\Debug\startup.Properties.Resources.resources
+c:\users\pc\documents\visual studio 2017\Projects\startup\startup\obj\Debug\startup.csproj.GenerateResource.Cache
+c:\users\pc\documents\visual studio 2017\Projects\startup\startup\obj\Debug\startup.exe
+c:\users\pc\documents\visual studio 2017\Projects\startup\startup\obj\Debug\startup.pdb
+C:\Users\PC\documents\visual studio 2017\Projects\startup\startup\obj\Debug\Interop.IWshRuntimeLibrary.dll
+C:\Users\PC\documents\visual studio 2017\Projects\startup\startup\obj\Debug\startup.csproj.ResolveComReference.cache

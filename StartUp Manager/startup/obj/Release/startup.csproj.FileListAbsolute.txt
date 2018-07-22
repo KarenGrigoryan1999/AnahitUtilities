@@ -1,0 +1,33 @@
+C:\Users\PC\Documents\Visual Studio 2017\Projects\startup\startup\bin\Release\startup.exe.config
+C:\Users\PC\Documents\Visual Studio 2017\Projects\startup\startup\bin\Release\startup.exe
+C:\Users\PC\Documents\Visual Studio 2017\Projects\startup\startup\bin\Release\startup.pdb
+C:\Users\PC\Documents\Visual Studio 2017\Projects\startup\startup\obj\Release\startup.csprojResolveAssemblyReference.cache
+C:\Users\PC\Documents\Visual Studio 2017\Projects\startup\startup\obj\Release\Interop.IWshRuntimeLibrary.dll
+C:\Users\PC\Documents\Visual Studio 2017\Projects\startup\startup\obj\Release\startup.csproj.ResolveComReference.cache
+C:\Users\PC\Documents\Visual Studio 2017\Projects\startup\startup\obj\Release\startup.Form1.resources
+C:\Users\PC\Documents\Visual Studio 2017\Projects\startup\startup\obj\Release\startup.Properties.Resources.resources
+C:\Users\PC\Documents\Visual Studio 2017\Projects\startup\startup\obj\Release\startup.csproj.GenerateResource.Cache
+C:\Users\PC\Documents\Visual Studio 2017\Projects\startup\startup\obj\Release\startup.exe
+C:\Users\PC\Documents\Visual Studio 2017\Projects\startup\startup\obj\Release\startup.pdb
+C:\Users\PC\Desktop\Новая папка\startup\bin\Release\startup.exe.config
+C:\Users\PC\Desktop\Новая папка\startup\bin\Release\startup.exe
+C:\Users\PC\Desktop\Новая папка\startup\bin\Release\startup.pdb
+C:\Users\PC\Desktop\Новая папка\startup\obj\Release\startup.csprojResolveAssemblyReference.cache
+C:\Users\PC\Desktop\Новая папка\startup\obj\Release\Interop.IWshRuntimeLibrary.dll
+C:\Users\PC\Desktop\Новая папка\startup\obj\Release\startup.csproj.ResolveComReference.cache
+C:\Users\PC\Desktop\Новая папка\startup\obj\Release\startup.Form1.resources
+C:\Users\PC\Desktop\Новая папка\startup\obj\Release\startup.Properties.Resources.resources
+C:\Users\PC\Desktop\Новая папка\startup\obj\Release\startup.csproj.GenerateResource.Cache
+C:\Users\PC\Desktop\Новая папка\startup\obj\Release\startup.exe
+C:\Users\PC\Desktop\Новая папка\startup\obj\Release\startup.pdb
+C:\Users\PC\Desktop\startup\startup\bin\Release\startup.exe.config
+C:\Users\PC\Desktop\startup\startup\bin\Release\startup.exe
+C:\Users\PC\Desktop\startup\startup\bin\Release\startup.pdb
+C:\Users\PC\Desktop\startup\startup\obj\Release\startup.csprojResolveAssemblyReference.cache
+C:\Users\PC\Desktop\startup\startup\obj\Release\Interop.IWshRuntimeLibrary.dll
+C:\Users\PC\Desktop\startup\startup\obj\Release\startup.csproj.ResolveComReference.cache
+C:\Users\PC\Desktop\startup\startup\obj\Release\startup.Form1.resources
+C:\Users\PC\Desktop\startup\startup\obj\Release\startup.Properties.Resources.resources
+C:\Users\PC\Desktop\startup\startup\obj\Release\startup.csproj.GenerateResource.Cache
+C:\Users\PC\Desktop\startup\startup\obj\Release\startup.exe
+C:\Users\PC\Desktop\startup\startup\obj\Release\startup.pdb
