@@ -74,6 +74,19 @@ namespace startup
             startup_names.Clear();
             int i = 0;//reset counter
             listView1.Items.Clear();//reset listView1
+            string remove_params(string app_path)
+            {
+                app_path = app_path.Replace('/', '"');
+                if (app_path.Split('"').Length > 1)
+                {
+                    app_path = app_path.Split('"')[1];
+                }
+                else
+                {
+                    app_path = app_path.Split('"')[0];
+                }
+                return app_path;
+            }
             //described below condition is performed only for x64 system
             if (Environment.Is64BitOperatingSystem){
             //load active apps for x64
@@ -83,8 +96,7 @@ namespace startup
                     {
                         value = Registry.LocalMachine.OpenSubKey("SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Run").GetValue(reg_value).ToString();
                         values.Add(value);
-                        value = value.Replace('"', ' ').Replace(".exe", ".exe@").Replace(".bat", ".bat@").Trim();
-                        value = value.Split('@')[0];
+                        value = remove_params(value);
                         active_apps.Add(value);
                         FileVersionInfo file = FileVersionInfo.GetVersionInfo(value);
                         imageList1.Images.Add("image", Icon.ExtractAssociatedIcon(value).ToBitmap());
@@ -103,8 +115,7 @@ namespace startup
                     try {
                     value = Registry.LocalMachine.OpenSubKey("SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\RunOnce").GetValue(reg_value).ToString();
                     values.Add(value);
-                    value = value.Replace('"', ' ').Replace(".exe", ".exe@").Replace(".bat", ".bat@").Trim();
-                    value = value.Split('@')[0];
+                    value = remove_params(value);
                     active_apps.Add(value);
                     FileVersionInfo file = FileVersionInfo.GetVersionInfo(value);
                     imageList1.Images.Add("image", Icon.ExtractAssociatedIcon(value).ToBitmap());
@@ -125,8 +136,7 @@ namespace startup
                 try {
                 value = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run").GetValue(reg_value).ToString();
                 values.Add(value);
-                value = value.Replace('"', ' ').Replace(".exe", ".exe@").Replace(".bat", ".bat@").Trim();
-                value = value.Split('@')[0];
+                value = remove_params(value);
                 active_apps.Add(value);
                 FileVersionInfo file = FileVersionInfo.GetVersionInfo(value);
                 imageList1.Images.Add("image", Icon.ExtractAssociatedIcon(value).ToBitmap());                
@@ -146,8 +156,7 @@ namespace startup
                 try {
                 value = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run").GetValue(reg_value).ToString();
                 values.Add(value);
-                value = value.Replace('"', ' ').Replace(".exe", ".exe@").Replace(".bat", ".bat@").Trim();
-                value = value.Split('@')[0];
+                value = remove_params(value);
                 active_apps.Add(value);
                 FileVersionInfo file = FileVersionInfo.GetVersionInfo(value);
                 imageList1.Images.Add("image", Icon.ExtractAssociatedIcon(value).ToBitmap());
@@ -167,8 +176,7 @@ namespace startup
                 try {
                 value = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce").GetValue(reg_value).ToString();
                 values.Add(value);
-                value = value.Replace('"', ' ').Replace(".exe", ".exe@").Replace(".bat", ".bat@").Trim();
-                value = value.Split('@')[0];
+                value = remove_params(value);
                 active_apps.Add(value);
                 FileVersionInfo file = FileVersionInfo.GetVersionInfo(value);
                 imageList1.Images.Add("image", Icon.ExtractAssociatedIcon(value).ToBitmap());
@@ -188,8 +196,7 @@ namespace startup
                 try {
                 value = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce").GetValue(reg_value).ToString();
                 values.Add(value);
-                value = value.Replace('"', ' ').Replace(".exe", ".exe@").Replace(".bat", ".bat@").Trim();
-                value = value.Split('@')[0];
+                value = remove_params(value);
                 active_apps.Add(value);
                 FileVersionInfo file = FileVersionInfo.GetVersionInfo(value);
                 imageList1.Images.Add("image", Icon.ExtractAssociatedIcon(value).ToBitmap());
@@ -312,8 +319,7 @@ namespace startup
                 try {
                 StreamReader read = new StreamReader(file.FullName);
                 value = read.ReadLine();
-                value = value.Replace('"', ' ').Replace(".exe", ".exe@").Replace(".bat", ".bat@").Trim();
-                value = value.Split('@')[0];
+                value = remove_params(value);
                 FileVersionInfo fileinfo = FileVersionInfo.GetVersionInfo(value);
                 string programname = fileinfo.ProductName;//load program name
                 if (fileinfo.ProductName == null)//if no name, then must load file name
@@ -339,8 +345,7 @@ namespace startup
                 try {
                 StreamReader read = new StreamReader(file.FullName);
                 value = read.ReadLine();
-                value = value.Replace('"', ' ').Replace(".exe", ".exe@").Replace(".bat", ".bat@").Trim();
-                value = value.Split('@')[0];
+                value = remove_params(value);
                 FileVersionInfo fileinfo = FileVersionInfo.GetVersionInfo(value);                
                 string programname = fileinfo.ProductName;//load program name
                 if (fileinfo.ProductName == null)//if no name, then must load file name
