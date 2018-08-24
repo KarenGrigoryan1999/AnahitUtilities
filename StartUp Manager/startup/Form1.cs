@@ -236,6 +236,7 @@ namespace startup
                     string programname = fileinfo.ProductName;//load program name
                     if (fileinfo.ProductName == null)//if no name, then must load file name
                     programname = file.Name;
+                    imageList1.Images.Add("image", Icon.ExtractAssociatedIcon(programfile).ToBitmap());
                     ListViewItem item = new ListViewItem(programname, i);
                     item.SubItems.Add(fileinfo.CompanyName);
                     item.SubItems.Add(condition_on);
@@ -263,10 +264,10 @@ namespace startup
                 }
                 else
                 {
-                    ex = file.Extension;
+                    ex = file.Extension;                       
                     programfile = file.FullName;
                 }
-                if (ex == "exe" || ex == "bat")
+                    if (ex == "exe" || ex == "bat")
                 {
                     bool isdisabled = isdisabled_func(programfile);
                     FileVersionInfo fileinfo = FileVersionInfo.GetVersionInfo(programfile);
@@ -292,15 +293,14 @@ namespace startup
                 try {
                 StreamReader read = new StreamReader(file.FullName);
                 value = read.ReadLine();
-                value = value.Replace('"', ' ').Replace(".exe", ".exe@").Replace(".bat", ".bat@").Trim();
-                value = value.Split('@')[0];
+                value = remove_params(value);
                 FileVersionInfo fileinfo = FileVersionInfo.GetVersionInfo(value);
                 string programname = fileinfo.ProductName;//load program name
                 if (fileinfo.ProductName == null)//if no name, then must load file name
                 programname = file.Name;
-                bool isdisabled = isdisabled_func(value);
-                if (isdisabled)
-                {
+                bool isdisabled = isdisabled_func(value);                    
+                    if (isdisabled)
+                {                    
                     imageList1.Images.Add("image", Icon.ExtractAssociatedIcon(value).ToBitmap());
                     ListViewItem item = new ListViewItem(programname, i);
                     item.SubItems.Add(fileinfo.CompanyName);
@@ -343,17 +343,17 @@ namespace startup
             foreach (var file in directory6.GetFiles().Concat(directory7.GetFiles()))
             {
                 try {
-                StreamReader read = new StreamReader(file.FullName);
+                StreamReader read = new StreamReader(file.FullName);                    
                 value = read.ReadLine();
                 value = remove_params(value);
-                FileVersionInfo fileinfo = FileVersionInfo.GetVersionInfo(value);                
-                string programname = fileinfo.ProductName;//load program name
+                FileVersionInfo fileinfo = FileVersionInfo.GetVersionInfo(value);
+                    string programname = fileinfo.ProductName;//load program name
                 if (fileinfo.ProductName == null)//if no name, then must load file name
                 programname = file.Name;
                 bool isdisabled = isdisabled_func(value);
                 if (isdisabled)
-                {
-                    imageList1.Images.Add("image", Icon.ExtractAssociatedIcon(value).ToBitmap());
+                {                       
+                        imageList1.Images.Add("image", Icon.ExtractAssociatedIcon(value).ToBitmap());
                     ListViewItem item = new ListViewItem(programname, i);
                     item.SubItems.Add(fileinfo.CompanyName);
                     item.SubItems.Add(condition_off);
@@ -362,7 +362,7 @@ namespace startup
                     startup_paths.Add(file.DirectoryName);
                     startup_names.Add(file.Name);
                     read.Close();
-                    i++;
+                        i++;
                 }
             }catch { continue; }
         }
@@ -411,21 +411,22 @@ namespace startup
 
         private void button1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //MessageBox.Show(values[listView1.SelectedItems[0].Index]);
             string[] temp = startup_paths[listView1.SelectedItems[0].Index].Split('\\');
             if (listView1.SelectedItems[0].SubItems[2].Text == condition_on)
-            {                
+            {
                 //if section HKCU
                 if (temp[0] == "HKCU")
                 {
                     //if section Run
-                    if (temp[temp.Length-1] == "Run")
-                {
+                    if (temp[temp.Length - 1] == "Run")
+                    {
                         try { Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run", true).DeleteValue(startup_names[listView1.SelectedItems[0].Index]); } catch { }
-                        StreamWriter write = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\WinTools_autorun\\Run\\"+ startup_names[listView1.SelectedItems[0].Index]);
+                        StreamWriter write = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\WinTools_autorun\\Run\\" + startup_names[listView1.SelectedItems[0].Index]);
                         startup_paths[listView1.SelectedItems[0].Index] = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\WinTools_autorun\\Run";
                         write.WriteLine(values[listView1.SelectedItems[0].Index]);
                         write.Close();
-                }
+                    }
                 }
                 if (temp[0] == "HKCU")
                 {
@@ -481,7 +482,7 @@ namespace startup
                 {
                     FileInfo file = new FileInfo(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\" + startup_names[listView1.SelectedItems[0].Index]);
                     file.MoveTo(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\WinTools_autorun\\Start_menu\\" + startup_names[listView1.SelectedItems[0].Index]);
-                    startup_paths[listView1.SelectedItems[0].Index] = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) +"\\WinTools_autorun\\Start_menu";
+                    startup_paths[listView1.SelectedItems[0].Index] = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\WinTools_autorun\\Start_menu";
                 }
                 if (temp[temp.Length - 1] == "StartUp" && temp[1] == "programdata")
                 {
@@ -505,7 +506,7 @@ namespace startup
                             value = read.ReadLine();
                             read.Close();
                         }
-                            Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run",true).SetValue(startup_names[listView1.SelectedItems[0].Index], value);
+                        Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run", true).SetValue(startup_names[listView1.SelectedItems[0].Index], value);
                         startup_paths[listView1.SelectedItems[0].Index] = "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run";
                         FileInfo file = new FileInfo(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\WinTools_autorun\\Run\\" + startup_names[listView1.SelectedItems[0].Index]);
                         file.Delete();
@@ -530,7 +531,7 @@ namespace startup
                         FileInfo file = new FileInfo(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\WinTools_autorun\\Start_menu\\" + startup_names[listView1.SelectedItems[0].Index]);
                         file.MoveTo(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\" + startup_names[listView1.SelectedItems[0].Index]);
                         startup_paths[listView1.SelectedItems[0].Index] = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Microsoft\\Windows\\Start Menu\\Programs\\Startup";
-                    }                    
+                    }
                 }
                 if (temp[1] == "ProgramData")
                 {
@@ -571,7 +572,7 @@ namespace startup
                 }
                 listView1.SelectedItems[0].SubItems[2].Text = condition_on;
             }
-            }
+        }
 
         private void listView1_MouseUp(object sender, MouseEventArgs e)
         {
