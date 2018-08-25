@@ -24,6 +24,7 @@ namespace WpfApp9
         public ImageSource ImageData { get; set; }
         public string Title { get; set; }
         public string Provider { get; set; }
+        public string Size { get; set; }
     }
     class temp_item_add
     {
@@ -44,6 +45,8 @@ namespace WpfApp9
         }
         private readonly BackgroundWorker get_elements = new BackgroundWorker();
         List<string> Uninstall_paths = new List<string>();//Collection with Uninstallers paths
+        int apps_count = 0;
+        long total_size = 0;
         void cleaning_junk_items(string app_path)
         {
             List<string> reg_errors = new List<string>();//Collection with registry errors
@@ -113,19 +116,20 @@ namespace WpfApp9
             }
         }
         private void get_elements_DoWork(object sender, DoWorkEventArgs e)
-        {
-            void get_apps(RegistryKey obk)
+        {            
+            void get_apps(RegistryKey OpenBaseKey)
             {
-                RegistryKey OpenBaseKey = obk;
                 string[] programs = OpenBaseKey.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall").GetSubKeyNames();
                 foreach (string app in programs)
                 {
+                    long program_size = 0;
                     string unistallstring = (string)OpenBaseKey.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\" + app).GetValue("UninstallString");
                     if (unistallstring != null || unistallstring != "")
                     {
                         try
                         {
                             RegistryKey path = OpenBaseKey.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\" + app);
+                            string installocation = (string)path.GetValue("InstallLocation");
                             string displayname = (string)path.GetValue("DisplayName");
                             if (displayname == null || displayname == "")
                                 displayname = "Unknown";
@@ -141,17 +145,38 @@ namespace WpfApp9
                             if (!unistallstring.ToLower().Contains("msiexec"))
                             {
                             data = System.Drawing.Icon.ExtractAssociatedIcon(icon_path).ToBitmap().GetHbitmap();
+                                if (installocation != null && installocation != "")
+                                {
+                                DirectoryInfo program_dir = new DirectoryInfo(installocation);
+                                foreach (var directory in program_dir.GetFiles("*", SearchOption.AllDirectories))
+                                {
+                                total_size += directory.Length;
+                                program_size += directory.Length;                                       
+                                }
+                                }
                             }
                             else
                             {
-                            data = System.Drawing.Icon.ExtractAssociatedIcon(@"C:\Windows\system32\ComputerDefaults.exe").ToBitmap().GetHbitmap();
+                                data = System.Drawing.Icon.ExtractAssociatedIcon(@"C:\Windows\system32\ComputerDefaults.exe").ToBitmap().GetHbitmap();
                             }
-                            App_add item = new App_add() { Title = displayname, Provider = publisher };
+                            string size;                  
+                            if (program_size / 1024 / 1024 < 1024)
+                            {
+                                size = Convert.ToString(Math.Round(Convert.ToDouble((program_size+0.0) / 1024 / 1024),2)) + " Mb";
+                            }
+                            else
+                            {
+                                size = Convert.ToString(Math.Round(Convert.ToDouble((program_size + 0.0) / 1024 / 1024 / 1024),2)) + " Gb";
+                            }
+                            if (program_size == 0)
+                            size = "Unknown";
+                            App_add item = new App_add() { Title = displayname, Provider = publisher, Size = size };                 
                             object[] item_info = new object[2];
                             item_info[0] = data;
                             item_info[1] = item;
                             get_elements.ReportProgress(0, item_info);
                             Uninstall_paths.Add(unistallstring);
+                            apps_count++;
                         }
                         catch
                         {
@@ -174,6 +199,12 @@ namespace WpfApp9
             ImageSource image = Imaging.CreateBitmapSourceFromHBitmap(data, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
             item.ImageData = image;
             listView.Items.Add(item);
+            programs_count.Content = apps_count+" apps were found";
+            long size = total_size / 1024 / 1024;
+            if(size<1024)
+            programs_size.Content = "Total size: " + size + " Mb";
+            else
+            programs_size.Content = "Total size: " +(size/1024) + " Gb";
         }
     void layoutRoot_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -188,23 +219,23 @@ namespace WpfApp9
         private void exit_MouseEnter(object sender, MouseEventArgs e)
         {
             exit.Foreground = System.Windows.Media.Brushes.Gray;
-            hide.Foreground = System.Windows.Media.Brushes.Black;
+            hide.Foreground = System.Windows.Media.Brushes.White;
         }
 
         private void exit_MouseLeave(object sender, MouseEventArgs e)
         {
-            exit.Foreground = System.Windows.Media.Brushes.Black;
+            exit.Foreground = System.Windows.Media.Brushes.White;
         }
 
         private void hide_MouseEnter(object sender, MouseEventArgs e)
         {
-            exit.Foreground = System.Windows.Media.Brushes.Black;
+            exit.Foreground = System.Windows.Media.Brushes.White;
             hide.Foreground = System.Windows.Media.Brushes.Gray;
         }
 
         private void hide_MouseLeave(object sender, MouseEventArgs e)
         {
-            hide.Foreground = System.Windows.Media.Brushes.Black;
+            hide.Foreground = System.Windows.Media.Brushes.White;
         }
 
         private void hide_MouseDown(object sender, MouseButtonEventArgs e)
@@ -244,7 +275,7 @@ namespace WpfApp9
             uninstall.IsEnabled = false;
             string app_path = "";            
             App_add selected_item = (App_add)listView.SelectedItem;
-            MessageBoxResult res = MessageBox.Show("you are sure that you want to uninstall the program?", "Uninstall Manager", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult res = MessageBox.Show("You are sure that you want to uninstall the program?", "Uninstall Manager", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.Yes)
             {
                 var process = new ProcessStartInfo()

@@ -10,11 +10,27 @@
         <Grid.Effect>
             <DropShadowEffect BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="2"/>
         </Grid.Effect>
-        <Label x:Name="exit" Content="r" HorizontalAlignment="Left" Margin="660,5,0,0" VerticalAlignment="Top" FontFamily="Webdings" Foreground="Black" MouseDown="exit_MouseDown" Cursor="Hand" MouseEnter="exit_MouseEnter" MouseLeave="exit_MouseLeave"/>
-        <Label x:Name="hide" Content="_" HorizontalAlignment="Left" Margin="641,2,0,0" VerticalAlignment="Top" FontFamily="Verdana Pro SemiBold" Foreground="Black" MouseDown="hide_MouseDown" Cursor="Hand" MouseEnter="hide_MouseEnter" MouseLeave="hide_MouseLeave"/>
-        <Label x:Name="title" Content="Uninstall Manager" HorizontalAlignment="Left" Margin="33,7,0,0" VerticalAlignment="Top" Height="36"/>
-        <Image HorizontalAlignment="Left" Height="24" Margin="6,5,0,0" VerticalAlignment="Top" Width="26" Source="unist.png"/>
-        <ListView x:Name="listView" Margin="2,37" BorderBrush="White" SelectionChanged="listView_SelectionChanged" Foreground="Black">
+        <Image HorizontalAlignment="Left" Height="152" Margin="0,-1,0,0" VerticalAlignment="Top" Width="690" Source="logo.png"/>
+        <Label x:Name="exit" Content="r" HorizontalAlignment="Left" Margin="660,5,0,0" VerticalAlignment="Top" FontFamily="Webdings" Foreground="White" MouseDown="exit_MouseDown" Cursor="Hand" MouseEnter="exit_MouseEnter" MouseLeave="exit_MouseLeave"/>
+        <Label x:Name="hide" Content="_" HorizontalAlignment="Left" Margin="641,2,0,0" VerticalAlignment="Top" FontFamily="Verdana Pro SemiBold" Foreground="White" MouseDown="hide_MouseDown" Cursor="Hand" MouseEnter="hide_MouseEnter" MouseLeave="hide_MouseLeave"/>
+        <Label x:Name="title" Content="Uninstall Manager" HorizontalAlignment="Left" Margin="67,13,0,0" VerticalAlignment="Top" Height="36" Foreground="White" FontSize="18"/>
+        <Image HorizontalAlignment="Left" Height="73" Margin="3,14,0,0" VerticalAlignment="Top" Width="62" Source="if_edit-delete_23231.ico" RenderTransformOrigin="0.516,0.712"/>
+        <ListView x:Name="listView" Margin="2,97,2,37" BorderBrush="White" SelectionChanged="listView_SelectionChanged" Foreground="Black">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Height ="60" VerticalAlignment="Stretch">
+
+                        <Image Source="{Binding ImageData}" Width="32" Height="32" />
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5,0,0,0">
+                            <TextBlock Text="{Binding Title}" VerticalAlignment="Center" Margin="4,0,0,0" FontSize="14"/>
+                            <TextBlock Text="{Binding Provider}" VerticalAlignment="Center" Margin="4,0,0,0" FontSize="12" Foreground="#FF383838"/>
+                            <TextBlock Text="{Binding Size}" VerticalAlignment="Center" Margin="4,0,0,0" FontSize="12" Foreground="#FF383838"/>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ListView x:Name="listView_Copy" Margin="2,97,2,37" BorderBrush="White" Visibility="Hidden" SelectionChanged="listView_Copy_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Height ="46" VerticalAlignment="Stretch">
@@ -23,27 +39,16 @@
                         <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5,0,0,0">
                             <TextBlock Text="{Binding Title}" VerticalAlignment="Center" Margin="4,0,0,0" FontSize="14"/>
                             <TextBlock Text="{Binding Provider}" VerticalAlignment="Center" Margin="4,0,0,0" FontSize="12" Foreground="#FF383838"/>
+                            <TextBlock Text="{Binding Size}" VerticalAlignment="Center" Margin="4,0,0,0" FontSize="12" Foreground="#FF383838"/>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <ListView x:Name="listView_Copy" Margin="2,37" BorderBrush="White" Visibility="Hidden" SelectionChanged="listView_Copy_SelectionChanged">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal" Height ="46" VerticalAlignment="Stretch">
-
-                        <Image Source="{Binding ImageData}" Width="32" Height="32" />
-                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5,0,0,0">
-                            <TextBlock Text="{Binding Title}" VerticalAlignment="Center" Margin="4,0,0,0" FontSize="14"/>
-                            <TextBlock Text="{Binding Provider}" VerticalAlignment="Center" Margin="4,0,0,0" FontSize="12" Foreground="#FF383838"/>
-                        </StackPanel>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="40,460,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190" TextChanged="textBox_TextChanged" SelectionOpacity="5" SelectionBrush="#FF252525" BorderBrush="#FFACACAC" OpacityMask="#FF3E3E3E" FontSize="14"/>
-        <Image HorizontalAlignment="Left" Height="22" Margin="9,460,0,0" VerticalAlignment="Top" Width="29" Source="search.png" RenderTransformOrigin="-0.621,-0.208"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="496,64,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="186" TextChanged="textBox_TextChanged" SelectionOpacity="5" SelectionBrush="#FF252525" BorderBrush="#FFB99828" OpacityMask="#FFDADADA" FontSize="14" Background="#FFEEAE3E" RenderTransformOrigin="0.853,0.217" Foreground="#FF595959"/>
+        <Image HorizontalAlignment="Left" Height="22" Margin="469,63,0,0" VerticalAlignment="Top" Width="29" Source="search.png" RenderTransformOrigin="-0.621,-0.208" Visibility="Visible" Opacity="0.5"/>
         <Button x:Name="uninstall" Content="Unistall" HorizontalAlignment="Left" Margin="574,459,0,0" VerticalAlignment="Top" Width="111" Height="23" Background="LightGray" BorderBrush="#FFB4B4B4" IsEnabled ="false" Click="unistall_Click"/>
+        <Label x:Name="programs_count" Content="Loading..." HorizontalAlignment="Left" Margin="67,33,0,0" VerticalAlignment="Top" Height="36" Foreground="White" FontSize="14"/>
+        <Label x:Name="programs_size" Content="Loading..." HorizontalAlignment="Left" Margin="67,48,0,0" VerticalAlignment="Top" Height="31" Foreground="White" FontSize="14"/>
     </Grid>
 </Window>

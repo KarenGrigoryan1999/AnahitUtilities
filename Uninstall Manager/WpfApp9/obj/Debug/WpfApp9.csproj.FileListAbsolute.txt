@@ -12,3 +12,20 @@ c:\users\pc\documents\visual studio 2017\Projects\WpfApp9\WpfApp9\obj\Debug\WpfA
 c:\users\pc\documents\visual studio 2017\Projects\WpfApp9\WpfApp9\obj\Debug\WpfApp9.exe
 c:\users\pc\documents\visual studio 2017\Projects\WpfApp9\WpfApp9\obj\Debug\WpfApp9.pdb
 C:\Users\PC\Documents\Visual Studio 2017\Projects\WpfApp9\WpfApp9\obj\Debug\WpfApp9.csprojResolveAssemblyReference.cache
+C:\Users\PC\Desktop\Uninstall Manager\WpfApp9\bin\Debug\Uninstall Manager.exe.config
+C:\Users\PC\Desktop\Uninstall Manager\WpfApp9\bin\Debug\Uninstall Manager.exe
+C:\Users\PC\Desktop\Uninstall Manager\WpfApp9\bin\Debug\Uninstall Manager.pdb
+C:\Users\PC\Desktop\Uninstall Manager\WpfApp9\obj\Debug\WpfApp9.csprojResolveAssemblyReference.cache
+C:\Users\PC\Desktop\Uninstall Manager\WpfApp9\obj\Debug\MainWindow.g.cs
+C:\Users\PC\Desktop\Uninstall Manager\WpfApp9\obj\Debug\Window1.g.cs
+C:\Users\PC\Desktop\Uninstall Manager\WpfApp9\obj\Debug\App.g.cs
+C:\Users\PC\Desktop\Uninstall Manager\WpfApp9\obj\Debug\Uninstall Manager_MarkupCompile.cache
+C:\Users\PC\Desktop\Uninstall Manager\WpfApp9\obj\Debug\Uninstall Manager_MarkupCompile.lref
+C:\Users\PC\Desktop\Uninstall Manager\WpfApp9\obj\Debug\App.baml
+C:\Users\PC\Desktop\Uninstall Manager\WpfApp9\obj\Debug\MainWindow.baml
+C:\Users\PC\Desktop\Uninstall Manager\WpfApp9\obj\Debug\Window1.baml
+C:\Users\PC\Desktop\Uninstall Manager\WpfApp9\obj\Debug\Uninstall Manager.g.resources
+C:\Users\PC\Desktop\Uninstall Manager\WpfApp9\obj\Debug\Uninstall_Manager.Properties.Resources.resources
+C:\Users\PC\Desktop\Uninstall Manager\WpfApp9\obj\Debug\WpfApp9.csproj.GenerateResource.Cache
+C:\Users\PC\Desktop\Uninstall Manager\WpfApp9\obj\Debug\Uninstall Manager.exe
+C:\Users\PC\Desktop\Uninstall Manager\WpfApp9\obj\Debug\Uninstall Manager.pdb

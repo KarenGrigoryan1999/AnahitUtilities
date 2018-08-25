@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\PC\Desktop\Uninstall Manager\WpfApp9\obj\Release\
+C:\Users\PC\Desktop\Uninstall Manager\WpfApp9\obj\Debug\
 Uninstall_Manager
 none
 false
-TRACE
+DEBUG;TRACE
 C:\Users\PC\Desktop\Uninstall Manager\WpfApp9\App.xaml
 2462529049
 
-6-1344379206
+10-1602697185
 151905640147
 MainWindow.xaml;Window1.xaml;
 
-False
+True
 
