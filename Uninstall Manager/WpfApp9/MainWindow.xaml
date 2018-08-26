@@ -18,13 +18,12 @@
         <ListView x:Name="listView" Margin="2,97,2,37" BorderBrush="White" SelectionChanged="listView_SelectionChanged" Foreground="Black">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal" Height ="60" VerticalAlignment="Stretch">
+                    <StackPanel Orientation="Horizontal" Height ="46" VerticalAlignment="Stretch">
 
                         <Image Source="{Binding ImageData}" Width="32" Height="32" />
                         <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5,0,0,0">
                             <TextBlock Text="{Binding Title}" VerticalAlignment="Center" Margin="4,0,0,0" FontSize="14"/>
                             <TextBlock Text="{Binding Provider}" VerticalAlignment="Center" Margin="4,0,0,0" FontSize="12" Foreground="#FF383838"/>
-                            <TextBlock Text="{Binding Size}" VerticalAlignment="Center" Margin="4,0,0,0" FontSize="12" Foreground="#FF383838"/>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>
@@ -39,7 +38,6 @@
                         <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5,0,0,0">
                             <TextBlock Text="{Binding Title}" VerticalAlignment="Center" Margin="4,0,0,0" FontSize="14"/>
                             <TextBlock Text="{Binding Provider}" VerticalAlignment="Center" Margin="4,0,0,0" FontSize="12" Foreground="#FF383838"/>
-                            <TextBlock Text="{Binding Size}" VerticalAlignment="Center" Margin="4,0,0,0" FontSize="12" Foreground="#FF383838"/>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>
@@ -49,6 +47,5 @@
         <Image HorizontalAlignment="Left" Height="22" Margin="469,63,0,0" VerticalAlignment="Top" Width="29" Source="search.png" RenderTransformOrigin="-0.621,-0.208" Visibility="Visible" Opacity="0.5"/>
         <Button x:Name="uninstall" Content="Unistall" HorizontalAlignment="Left" Margin="574,459,0,0" VerticalAlignment="Top" Width="111" Height="23" Background="LightGray" BorderBrush="#FFB4B4B4" IsEnabled ="false" Click="unistall_Click"/>
         <Label x:Name="programs_count" Content="Loading..." HorizontalAlignment="Left" Margin="67,33,0,0" VerticalAlignment="Top" Height="36" Foreground="White" FontSize="14"/>
-        <Label x:Name="programs_size" Content="Loading..." HorizontalAlignment="Left" Margin="67,48,0,0" VerticalAlignment="Top" Height="31" Foreground="White" FontSize="14"/>
     </Grid>
 </Window>
